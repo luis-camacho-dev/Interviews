@@ -28,20 +28,45 @@ namespace BusinessLogic
         {
             // TODO Add AutoMapper
             var serviceRequest = _unitOfWork.ServiceModelRepository.GetById(id);
-            return Parse(serviceRequest);
+            if (serviceRequest != null)
+            {
+                return Parse(serviceRequest);
+            }
+            return null;
         }
 
         public IEnumerable<ServiceRequestDTO> GetAll()
         {
             // TODO Add AutoMapper
-            return _unitOfWork.ServiceModelRepository.GetAll().Select( s => Parse(s)).ToList();
+            var allServiceRequests = _unitOfWork.ServiceModelRepository.GetAll();
+            if (allServiceRequests != null && allServiceRequests.Any())
+            {
+                return allServiceRequests.Select(s => Parse(s)).ToList();
+            }
+            return null;
+            
         }
 
         public void Update(ServiceRequestDTO serviceRequestDTO)
         {
-            // TODO Add AutoMapper
-            _unitOfWork.ServiceModelRepository.Update(Parse(serviceRequestDTO));
-            _unitOfWork.Save();
+            var oldServiceRequest = _unitOfWork.ServiceModelRepository.GetById(serviceRequestDTO.Id);
+            if (oldServiceRequest != null)
+            {
+                oldServiceRequest.CreatedDate = serviceRequestDTO.CreatedDate;
+                oldServiceRequest.Description = serviceRequestDTO.Description;
+                oldServiceRequest.LastModifiedDate = serviceRequestDTO.LastModifiedDate;
+                oldServiceRequest.CreatedBy = serviceRequestDTO.CreatedBy;
+                oldServiceRequest.BuildingCode = serviceRequestDTO.BuildingCode;
+                oldServiceRequest.CurrentStatus = serviceRequestDTO.CurrentStatus.ToString();
+                oldServiceRequest.LastModifiedBy = serviceRequestDTO.LastModifiedBy;
+
+                // TODO Add AutoMapper
+                _unitOfWork.ServiceModelRepository.Update(oldServiceRequest);
+                _unitOfWork.Save();
+                return;
+            }
+            throw new InvalidDataException($"There is not Service Request with Identifier={serviceRequestDTO.Id}");
+            
         }
 
         private ServiceRequestDTO Parse(ServiceModel source)

@@ -5,13 +5,15 @@ VisualStudioVersion = 17.0.32014.148
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ServiceRequest", "ServiceRequest.csproj", "{FA37D748-47DD-49F5-8434-206B46A20F72}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logic", "..\BusinessLogic\Logic.csproj", "{D8E05786-000E-4AA8-B393-626CC90F97D8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Logic", "..\BusinessLogic\Logic.csproj", "{D8E05786-000E-4AA8-B393-626CC90F97D8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data", "..\Data\Data.csproj", "{F18FBEAB-CD6C-4650-AA42-27D4BBB868E3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Data", "..\Data\Data.csproj", "{F18FBEAB-CD6C-4650-AA42-27D4BBB868E3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "..\Common\Common.csproj", "{7192F1E8-AD24-4BBF-98DF-D216C95F7C85}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Common", "..\Common\Common.csproj", "{7192F1E8-AD24-4BBF-98DF-D216C95F7C85}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ILogic", "..\ILogic\ILogic.csproj", "{80DAAECE-99D9-4411-9FE6-CB2E5332BFEE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ILogic", "..\ILogic\ILogic.csproj", "{80DAAECE-99D9-4411-9FE6-CB2E5332BFEE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceRequestUnitTest", "..\ServiceRequestUnitTest\ServiceRequestUnitTest.csproj", "{BE2F4D15-B923-4668-B0DF-7A2A6314299E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{80DAAECE-99D9-4411-9FE6-CB2E5332BFEE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{80DAAECE-99D9-4411-9FE6-CB2E5332BFEE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{80DAAECE-99D9-4411-9FE6-CB2E5332BFEE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BE2F4D15-B923-4668-B0DF-7A2A6314299E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BE2F4D15-B923-4668-B0DF-7A2A6314299E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BE2F4D15-B923-4668-B0DF-7A2A6314299E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BE2F4D15-B923-4668-B0DF-7A2A6314299E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

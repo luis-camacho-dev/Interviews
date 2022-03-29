@@ -19,38 +19,74 @@ namespace ServiceRequest.Controllers
         }
         
         [HttpGet]
-        public IEnumerable<ServiceRequestDTO> Get()
+        public ActionResult<IEnumerable<ServiceRequestDTO>> Get()
         {
-            return _serviceRequestManager.GetAll();
+            IEnumerable< ServiceRequestDTO> serviceRequests = _serviceRequestManager.GetAll();
+            if (serviceRequests != null && serviceRequests.Any())
+            {
+                return Ok(serviceRequests);
+            }
+            return NotFound("There is not service Requets in the database.");
         }
 
         // GET api/<ServiceRequestController>/5
         [HttpGet("{id}")]
-        public ServiceRequestDTO Get(Guid id)
+        public ActionResult<ServiceRequestDTO> Get(Guid id)
         {
-            return _serviceRequestManager.Get(id);
+            var serviceRequest = _serviceRequestManager.Get(id); ;
+            if (serviceRequest != null)
+            {
+                return serviceRequest;
+            }
+            return NotFound($"There is not service record for the Identifier={id}");
         }
 
         // POST api/<ServiceRequestController>
         [HttpPost]
-        public void Post([FromBody] ServiceRequestDTO value)
-        {   
-            _serviceRequestManager.Create(value);
+        public ActionResult<Guid> Post([FromBody] ServiceRequestDTO value)
+        {
+            try
+            {
+                _serviceRequestManager.Create(value);
+                return value.Id;
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+            
         }
 
         // PUT api/<ServiceRequestController>/5
         [HttpPut("{id}")]
-        public void Put([FromBody]ServiceRequestDTO value, Guid id)
+        public IActionResult Put([FromBody]ServiceRequestDTO value, Guid id)
         {
-            value.Id = id;
-            _serviceRequestManager.Update(value);
+            try
+            {
+                value.Id = id;
+                _serviceRequestManager.Update(value);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
         }
 
         // DELETE api/<ServiceRequestController>/5
         [HttpDelete("{id}")]
-        public void Delete(Guid id)
+        public IActionResult Delete(Guid id)
         {
-            _serviceRequestManager.Delete(id);
+            try
+            {
+                _serviceRequestManager.Delete(id);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+            
         }
     }
 }
