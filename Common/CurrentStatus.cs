@@ -9,16 +9,11 @@ namespace Common
 {
     [JsonConverter(typeof(JsonStringEnumConverter))]
     public enum CurrentStatus
-    {
-        
+    {   
         NotApplicable,
-      
         Created,
-        
         InProgress,
-        
         Complete,
-        
         Canceled
     }
 }
