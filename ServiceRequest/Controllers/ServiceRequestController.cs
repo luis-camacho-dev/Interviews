@@ -40,8 +40,9 @@ namespace ServiceRequest.Controllers
 
         // PUT api/<ServiceRequestController>/5
         [HttpPut("{id}")]
-        public void Put(ServiceRequestDTO value)
+        public void Put([FromBody]ServiceRequestDTO value, Guid id)
         {
+            value.Id = id;
             _serviceRequestManager.Update(value);
         }
 

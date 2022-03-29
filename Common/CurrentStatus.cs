@@ -2,16 +2,23 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace Common
 {
+    [JsonConverter(typeof(JsonStringEnumConverter))]
     public enum CurrentStatus
     {
-        NotApplicable =1,
-        Created = 2,
-        InProgress = 3,
-        Complete = 4,
-        Canceled = 5
+        
+        NotApplicable,
+      
+        Created,
+        
+        InProgress,
+        
+        Complete,
+        
+        Canceled
     }
 }

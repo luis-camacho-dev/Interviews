@@ -21,6 +21,7 @@ namespace BusinessLogic
         public void Delete(Guid id)
         {
             _unitOfWork.ServiceModelRepository.Delete(id);
+            _unitOfWork.Save();
         }
 
         public ServiceRequestDTO Get(Guid id)
@@ -40,17 +41,19 @@ namespace BusinessLogic
         {
             // TODO Add AutoMapper
             _unitOfWork.ServiceModelRepository.Update(Parse(serviceRequestDTO));
+            _unitOfWork.Save();
         }
 
         private ServiceRequestDTO Parse(ServiceModel source)
         {
+            Enum.TryParse(source.CurrentStatus, out CurrentStatus myStatus);
             return new ServiceRequestDTO
             {
                 Id = source.Id,
                 BuildingCode = source.BuildingCode,
                 CreatedBy = source.CreatedBy,
                 CreatedDate = source.CreatedDate,
-                CurrentStatus = (CurrentStatus)source.CurrentStatus, // conver int to Enum
+                CurrentStatus = myStatus, // conver int to Enum
                 Description = source.Description,                
                 LastModifiedBy = source.LastModifiedBy,
                 LastModifiedDate = source.LastModifiedDate
@@ -59,13 +62,14 @@ namespace BusinessLogic
 
         private ServiceModel Parse(ServiceRequestDTO source)
         {
+           
             return new ServiceModel
             {
                 Id = source.Id,
                 BuildingCode = source.BuildingCode,
                 CreatedBy = source.CreatedBy,
                 CreatedDate = source.CreatedDate,
-                CurrentStatus = Convert.ToInt32(source.CurrentStatus),
+                CurrentStatus = source.CurrentStatus.ToString(),
                 Description = source.Description,
                 LastModifiedBy = source.LastModifiedBy,
                 LastModifiedDate = source.LastModifiedDate
