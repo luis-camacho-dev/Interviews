@@ -1,8 +1,10 @@
 # Interviews-ServiceRequests
 create CRUD Operations for the Service Requests
 # Steps to configure the environment
-1.-First clone the project from 
+1.-First clone the project from: 
+
 https://github.com/luis-camacho-dev/Interviews.git
+
 2.- git checkout ServiceRequest 
 
 3.- build the project with .net 6 and visual studio 2022
